@@ -1,11 +1,6 @@
-# WebMCP DApp PoC
+# Send Me Money / Buy Me a Coffee DApp
 
-This repository contains the smart contracts and frontend for the WebMCP DApp PoC. It is structured as a monorepo to separate the blockchain logic from the user interface.
-
-## Repository Structure
-
-- `contracts/`: Contains the Foundry project for smart contract development.
-- `frontend/`: (To be added) Will contain the web application frontend.
+This repository contains the smart contracts for a basic "Buy me a coffee" / "Send me money" DApp, built specifically to be deployed on the **zkSync Mainnet Layer 2** to minimize transaction costs.
 
 ## Smart Contracts (Foundry)
 
@@ -29,8 +24,8 @@ forge build
 forge test
 ```
 
-### Deploy
+### Future Requirements
+- **Environment Helper Functions:** As the project evolves, we will need helper functions to seamlessly switch between different networks, including `sepolia` mainnet, `zksync` sepolia, and `zksync` mainnet.
 
-```shell
-forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+## Project Guidelines
+Please refer to the `.gemini/GEMINI.md` for strict coding guidelines (style, optimization, and naming conventions) utilized by developers and Antigravity agents on this project.
