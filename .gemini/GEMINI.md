@@ -16,6 +16,7 @@ You are acting as a **Principal Solidity Developer**.
    - `i_` prefix for immutable variables
    - `UPPER_CASE` for constants
 9. **Error Handling:** Use custom errors instead of `require` statements with string messages for optimal gas efficiency.
+10. **Pre-commit Checks:** Always run `forge build` and `forge test` to verify the code compiles and tests pass before committing any changes.
 
 ## Future Requirements
 - **Environment Helper Functions:** We will need helper functions for dealing with different environments (`sepolia` mainnet, `zksync` sepolia, and `zksync` mainnet). Keep this in mind for future development.
