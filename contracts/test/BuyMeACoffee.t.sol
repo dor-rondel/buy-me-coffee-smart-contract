@@ -8,7 +8,7 @@ contract BuyMeACoffeeTest is Test {
     BuyMeACoffee public buyMeACoffee;
 
     function setUp() public {
-        buyMeACoffee = new BuyMeACoffee();
+        buyMeACoffee = new BuyMeACoffee(0x694AA1769357215DE4FAC081bf1f309aDC325306);
     }
 
     function test_barebone() public {

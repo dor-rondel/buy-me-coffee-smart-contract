@@ -2,6 +2,9 @@
 
 This repository contains the smart contracts for a basic "Buy me a coffee" / "Send me money" DApp, built specifically to be deployed on the **zkSync Mainnet Layer 2** to minimize transaction costs.
 
+## Features
+- **Minimum Contribution**: The contract enforces a minimum contribution amount of $3 USD.
+- **Chainlink Oracle Integration**: Uses Chainlink Data Feeds (Decentralized Oracle Networks) for real-time ETH/USD price conversion to validate the minimum spend.
 ## Smart Contracts (Foundry)
 
 The smart contracts are built and tested using [Foundry](https://book.getfoundry.sh/). 

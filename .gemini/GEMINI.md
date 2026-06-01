@@ -18,6 +18,9 @@ You are acting as a **Principal Solidity Developer**.
 9. **Error Handling:** Use custom errors instead of `require` statements with string messages for optimal gas efficiency.
 10. **Pre-commit Checks:** Always run `forge build` and `forge test` to verify the code compiles and tests pass before committing any changes.
 
+## Architecture Guidelines
+- **Oracle Integration**: Smart contracts must inject oracle addresses (like Chainlink Price Feeds) via the constructor rather than hardcoding them. This pattern is crucial for facilitating proper testing with mock contracts and enabling cross-chain deployments without changing the source code.
+
 ## Future Requirements
 - **Environment Helper Functions:** We will need helper functions for dealing with different environments (`sepolia` mainnet, `zksync` sepolia, and `zksync` mainnet). Keep this in mind for future development.
 
