@@ -1,4 +1,4 @@
-# Send Me Money / Buy Me a Coffee DApp
+# Buy Me a Coffee DApp
 
 This repository contains the smart contracts for a basic "Buy me a coffee" / "Send me money" DApp, built specifically to be deployed on the **zkSync Mainnet Layer 2** to minimize transaction costs.
 
@@ -11,6 +11,7 @@ This repository contains the smart contracts for a basic "Buy me a coffee" / "Se
 ## Design Decisions
 - **No Events/Mappings**: We have deliberately omitted Events and complex Mappings (e.g., address-to-donations) to keep the `fund` function as gas-efficient as possible. Given the expected low volume and lack of subscription features, the current array-based tracking is sufficient for frontend needs.
 - **Minimalist Storage**: Storing only essential donor data to minimize on-chain footprint.
+- **Immutability of Owner & Oracle**: Both the contract owner and the Chainlink Price Feed address are immutable once deployed. This eliminates "privileged access" risks but requires the owner to secure their private keys, as there is no recovery mechanism. We rely on Chainlink's proxy pattern for oracle longevity.
 
 ## Smart Contracts (Foundry)
 
