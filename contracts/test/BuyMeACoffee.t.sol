@@ -3,12 +3,14 @@ pragma solidity ^0.8.19;
 
 import "forge-std/Test.sol";
 import "../src/BuyMeACoffee.sol";
+import "../script/BuyMeACoffee.s.sol";
 
 contract BuyMeACoffeeTest is Test {
     BuyMeACoffee public buyMeACoffee;
 
     function setUp() public {
-        buyMeACoffee = new BuyMeACoffee(0x694AA1769357215DE4FAC081bf1f309aDC325306);
+        BuyMeACoffeeScript deployer = new BuyMeACoffeeScript();
+        buyMeACoffee = deployer.run();
     }
 
     function test_barebone() public {

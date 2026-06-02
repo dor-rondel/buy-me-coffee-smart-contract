@@ -9,11 +9,7 @@ This repository contains the smart contracts for a basic "Buy me a coffee" / "Se
 
 The smart contracts are built and tested using [Foundry](https://book.getfoundry.sh/). 
 
-To work on the contracts, navigate to the `contracts/` directory:
-
-```shell
-cd contracts
-```
+To work on the contracts, run commands from the project root directory.
 
 ### Build
 
@@ -21,6 +17,21 @@ cd contracts
 forge build
 ```
 
+### Local Testing with Anvil
+
+To run a persistent local node and deploy to it using the configured mock contracts:
+
+1. Copy `.env.example` to `.env` and ensure your `PRIVATE_KEY` is set.
+
+2. Open a separate terminal and start Anvil with EIP-1559 base fee disabled to avoid gas price issues:
+   ```shell
+   anvil --no-base-fee
+   ```
+3. Load the environment variables and run the deployment script targeting the local network:
+   ```shell
+   source .env
+   forge script contracts/script/BuyMeACoffee.s.sol --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY --broadcast
+   ```
 ### Test
 
 ```shell
