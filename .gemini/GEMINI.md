@@ -23,6 +23,18 @@ You are acting as a **Principal Solidity Developer**.
 ## Architecture Guidelines
 
 - **Oracle Integration**: Smart contracts must inject oracle addresses (like Chainlink Price Feeds) via the constructor rather than hardcoding them. This pattern is crucial for facilitating proper testing with mock contracts and enabling cross-chain deployments without changing the source code.
+- **Donor Tracking**:
+    - Implement a `Donor` struct containing: `address donor`, `string message`, `uint256 timestamp`, and `uint256 amount`.
+    - Maintain an `s_donors` array to store these structs.
+    - Enforce a 200-character limit on the message field to optimize gas and prevent abuse.
+- **Access Control**:
+    - Implement an ownership model where only the contract creator (owner) can withdraw funds.
+    - Use a custom error (e.g., `BuyMeACoffee__NotOwner`) for unauthorized withdrawal attempts.
+
+## Design Decisions & Scalability
+
+- **Omission of Events/Mappings**: We have deliberately excluded `events` and complex `mappings` (like tracking individual donations per address) to prioritize minimal gas costs for donors. The project currently anticipates low transaction volume and does not require subscription-based logic.
+- **Future-Proofing**: If volume increases or feature requirements (like subscriptions) evolve, the current architecture serves as a lean foundation. Upgradability should be handled via a proxy pattern if implemented in the future.
 
 ## Future Requirements
 
