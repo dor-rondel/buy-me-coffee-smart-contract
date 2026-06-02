@@ -5,6 +5,13 @@ This repository contains the smart contracts for a basic "Buy me a coffee" / "Se
 ## Features
 - **Minimum Contribution**: The contract enforces a minimum contribution amount of $3 USD.
 - **Chainlink Oracle Integration**: Uses Chainlink Data Feeds (Decentralized Oracle Networks) for real-time ETH/USD price conversion to validate the minimum spend.
+- **Donor Tracking**: Maintains a record of donors, including their address, a custom message (up to 200 characters), timestamp, and donation amount.
+- **Owner Withdrawal**: Secure mechanism for the contract owner to withdraw collected funds.
+
+## Design Decisions
+- **No Events/Mappings**: We have deliberately omitted Events and complex Mappings (e.g., address-to-donations) to keep the `fund` function as gas-efficient as possible. Given the expected low volume and lack of subscription features, the current array-based tracking is sufficient for frontend needs.
+- **Minimalist Storage**: Storing only essential donor data to minimize on-chain footprint.
+
 ## Smart Contracts (Foundry)
 
 The smart contracts are built and tested using [Foundry](https://book.getfoundry.sh/). 
