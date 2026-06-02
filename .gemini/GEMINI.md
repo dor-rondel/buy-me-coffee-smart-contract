@@ -34,6 +34,7 @@ You are acting as a **Principal Solidity Developer**.
 ## Design Decisions & Scalability
 
 - **Omission of Events/Mappings**: We have deliberately excluded `events` and complex `mappings` (like tracking individual donations per address) to prioritize minimal gas costs for donors. The project currently anticipates low transaction volume and does not require subscription-based logic.
+- **Immutability of Owner & Oracle**: The `i_owner` and `i_priceFeed` variables are `immutable`. This architecture choice maximizes decentralization and prevents "rug-pull" or "backdoor" scenarios. However, it necessitates that the owner maintains absolute control over their private keys, as there is no mechanism for ownership recovery or oracle address updates.
 - **Future-Proofing**: If volume increases or feature requirements (like subscriptions) evolve, the current architecture serves as a lean foundation. Upgradability should be handled via a proxy pattern if implemented in the future.
 
 ## Future Requirements
