@@ -25,13 +25,7 @@ contract MockV3Aggregator {
     function latestRoundData()
         external
         view
-        returns (
-            uint80 roundId,
-            int256 answer,
-            uint256 startedAt,
-            uint256 updatedAt,
-            uint80 answeredInRound
-        )
+        returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)
     {
         return (
             // forge-lint: disable-next-line(unsafe-typecast)
@@ -52,25 +46,11 @@ contract MockV3Aggregator {
         return 1;
     }
 
-    function getRoundData(
-        uint80 _roundId
-    )
+    function getRoundData(uint80 _roundId)
         external
         view
-        returns (
-            uint80 roundId,
-            int256 answer,
-            uint256 startedAt,
-            uint256 updatedAt,
-            uint80 answeredInRound
-        )
+        returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)
     {
-        return (
-            _roundId,
-            latestAnswer,
-            latestTimestamp,
-            latestTimestamp,
-            _roundId
-        );
+        return (_roundId, latestAnswer, latestTimestamp, latestTimestamp, _roundId);
     }
 }
