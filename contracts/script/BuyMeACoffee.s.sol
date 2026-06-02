@@ -3,13 +3,18 @@ pragma solidity ^0.8.19;
 
 import "forge-std/Script.sol";
 import "../src/BuyMeACoffee.sol";
+import "./HelperConfig.s.sol";
 
 contract BuyMeACoffeeScript is Script {
     function setUp() public {}
 
-    function run() public {
+    function run() public returns (BuyMeACoffee) {
+        HelperConfig helperConfig = new HelperConfig();
+        (address priceFeed) = helperConfig.activeNetworkConfig();
+
         vm.startBroadcast();
-        new BuyMeACoffee(0x694AA1769357215DE4FAC081bf1f309aDC325306);
+        BuyMeACoffee buyMeACoffee = new BuyMeACoffee(priceFeed);
         vm.stopBroadcast();
+        return buyMeACoffee;
     }
 }
