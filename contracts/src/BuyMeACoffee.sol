@@ -21,4 +21,12 @@ contract BuyMeACoffee {
             revert BuyMeACoffee__NotEnoughETH();
         }
     }
+
+    receive() external payable {
+        fund();
+    }
+
+    fallback() external payable {
+        fund();
+    }
 }
