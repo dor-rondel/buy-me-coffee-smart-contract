@@ -66,3 +66,7 @@ You are acting as a **Principal Solidity Developer**.
 
 - **Unit and Integration Tester:** A subagent dedicated to serving as a unit and integration tester for Solidity smart contracts.
 - **Smart Contract Auditor:** A subagent dedicated to verifying the security needs and auditing the smart contracts for vulnerabilities.
+
+## Documentation Standards
+- **Frontend**: All public functions and complex logic MUST use [JSDoc](https://jsdoc.app/) comments for type safety, parameter description, and clarity.
+- **Smart Contracts**: All public and external functions MUST use [NatSpec](https://docs.soliditylang.org/en/latest/natspec-format.html) comments to document functionality, parameters, and return values.

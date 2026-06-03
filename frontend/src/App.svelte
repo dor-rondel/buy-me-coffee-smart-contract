@@ -8,6 +8,13 @@
   let status = "";
   let funders: { donor: string }[] = [];
 
+  /**
+   * Fetches the list of donors from the smart contract.
+   * Updates the `funders` state variable with the donor data.
+   * @async
+   * @function fetchDonors
+   * @returns {Promise<void>}
+   */
   async function fetchDonors() {
     if (!window.ethereum) return;
     try {
@@ -25,6 +32,14 @@
 
   onMount(fetchDonors);
 
+  /**
+   * Handles the donation process when the user clicks 'Send ETH'.
+   * Validates input, requests transaction through MetaMask,
+   * updates status, and refreshes the donor list.
+   * @async
+   * @function handleFund
+   * @returns {Promise<void>}
+   */
   async function handleFund() {
     if (!window.ethereum) {
       status = "Please install MetaMask";
