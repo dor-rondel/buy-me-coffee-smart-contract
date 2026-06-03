@@ -128,7 +128,7 @@
   <div class="funders-list glass-card">
     <h3>Recent Funders</h3>
     <ul>
-      {#each [...funders].slice(-3).reverse() as funder}
+      {#each [...funders].slice(-3).reverse() as funder, i (i)}
         <li>{funder.donor.slice(0, 6)}...{funder.donor.slice(-4)}</li>
       {/each}
     </ul>
