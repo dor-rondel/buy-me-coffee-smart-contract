@@ -50,14 +50,15 @@
 
       status = "Transaction successful!";
       message = "";
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error("Detailed error:", e);
-      if (e.code === "INSUFFICIENT_FUNDS") {
+      const error = e as { code?: string; reason?: string; message?: string };
+      if (error.code === "INSUFFICIENT_FUNDS") {
         status = "Error: Insufficient funds for transaction";
-      } else if (e.code === "ACTION_REJECTED") {
+      } else if (error.code === "ACTION_REJECTED") {
         status = "Transaction rejected by user";
       } else {
-        status = `Error: ${e.reason || e.message}`;
+        status = `Error: ${error.reason || error.message || "Unknown error"}`;
       }
     }
   }
