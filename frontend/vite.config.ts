@@ -4,6 +4,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/buy-me-coffee-smart-contract/',
   plugins: [svelte()],
   resolve: {
     alias: {
