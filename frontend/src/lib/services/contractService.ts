@@ -1,4 +1,4 @@
-import { ethers } from 'ethers';
+import { ethers, type InterfaceAbi } from 'ethers';
 import abi from '../constants/abi.json';
 import networks from '../config/networks.json';
 
@@ -22,5 +22,5 @@ export const getContract = async (chainId: string) => {
 
   // ABI is nested in BuyMeACoffee.json
   const contractAbi = (abi as { abi: AbiEntry[] }).abi;
-  return new ethers.Contract(address, contractAbi, signer);
+  return new ethers.Contract(address, contractAbi as unknown as InterfaceAbi, signer);
 };

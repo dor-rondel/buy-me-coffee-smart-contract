@@ -46,7 +46,7 @@ You are acting as a **Principal Solidity Developer**.
 - **Blockchain Interaction**: Use `ethers.js` (v6). Implement manual gas limits as a fail-safe for estimation errors.
 - **Multi-Chain Resilience**: Implement a dynamic network lookup strategy via `networks.json`.
 - **CI/CD**: Separate CI pipeline for `frontend/` triggers on relevant changes, performing linting, type-checking, and building.
-- **Mandatory Validation**: Before completing any frontend task, you MUST run `pnpm lint` and `pnpm build` to ensure code quality and verify successful compilation.
+- **Mandatory Validation**: Before completing any frontend task, you MUST run `pnpm lint`, `pnpm check`, and `pnpm build` to ensure code quality, type safety, and verify successful compilation.
 - **Dependency Management**: Strictly use **pnpm** for all package operations.
 
 ## Active Deployments

@@ -69,20 +69,21 @@
 
   <label>
     Amount (ETH):
-    <input
-      type="number"
-      bind:value={amount}
-      step="0.01"
+    <input 
+      type="number" 
+      bind:value={amount} 
+      step="0.01" 
       min="0"
-      on:keydown={(e) => {
-        if (e.key === "-") {
+      on:keydown={(e: KeyboardEvent) => {
+        if (e.key === '-') {
           e.preventDefault();
         }
       }}
-      on:input={(e) => {
-        if (parseFloat(e.target.value) < 0) {
-          amount = "0";
-          e.target.value = "0";
+      on:input={(e: Event) => {
+        const target = e.target as HTMLInputElement;
+        if (parseFloat(target.value) < 0) {
+          amount = '0';
+          target.value = '0';
         }
       }}
     />
@@ -188,6 +189,7 @@
     font-weight: 800;
     background: linear-gradient(45deg, #ff8c00, #ff4500);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.02em;
     text-align: center;
@@ -226,7 +228,7 @@
 
   textarea {
     resize: none;
-    min-height: 200px; /* Further increased to ensure 200 chars fit */
+    min-height: 200px;
     line-height: 1.5;
   }
 
