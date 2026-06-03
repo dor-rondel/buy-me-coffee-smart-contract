@@ -2,6 +2,8 @@
 
 A full-stack project featuring a Solidity smart contract for receiving donations and a responsive Svelte frontend.
 
+**Live Website:** [https://dor-rondel.github.io/buy-me-coffee-smart-contract/](https://dor-rondel.github.io/buy-me-coffee-smart-contract/)
+
 ## Project Structure
 
 - **/contracts**: Solidity smart contract code.
@@ -49,9 +51,11 @@ Ensure you have [pnpm](https://pnpm.io/) or alternative node package manager ins
   Automatically type-checks, lint checks, and build checks on new PRs in `frontend/` directory.
 
 ## Project Context
+
 For more architectural details, conventions, and workflows, please refer to the [GEMINI.md](.gemini/GEMINI.md) file.
 
 ## Smart Contract Features
+
 - **Minimum Contribution**: Enforces a minimum donation amount in USD (using Chainlink Price Feeds) to optimize gas costs by ensuring transactions are meaningful.
 - **Donor Tracking**: Stores a record of all donors, including their address, message, timestamp, and contribution amount.
 - **Ownership**: Only the contract owner can withdraw collected funds.
