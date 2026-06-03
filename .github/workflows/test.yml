@@ -4,7 +4,15 @@ permissions: {}
 
 on:
   push:
+    paths:
+      - 'contracts/**'
+      - 'script/**'
+      - 'foundry.toml'
   pull_request:
+    paths:
+      - 'contracts/**'
+      - 'script/**'
+      - 'foundry.toml'
   workflow_dispatch:
 
 jobs:
