@@ -13,6 +13,32 @@ This repository contains the smart contracts for a basic "Buy me a coffee" / "Se
 - **Minimalist Storage**: Storing only essential donor data to minimize on-chain footprint.
 - **Immutability of Owner & Oracle**: Both the contract owner and the Chainlink Price Feed address are immutable once deployed. This eliminates "privileged access" risks but requires the owner to secure their private keys, as there is no recovery mechanism. We rely on Chainlink's proxy pattern for oracle longevity.
 
+## Deployments
+- **Sepolia Testnet**: [0xfD6C8Ee5193B111aABc5a2D8925a45fF11eBc0f4](https://sepolia.etherscan.io/address/0xfd6c8ee5193b111aabc5a2d8925a45ff11ebc0f4)
+
+## Frontend Development
+We are building a lightweight, visually rich DApp frontend using:
+...
+- **Automated Deployment**: GitHub Actions used to build and deploy to GitHub Pages.
+
+### Running the Frontend
+1. Navigate to the frontend directory:
+   ```shell
+   cd frontend
+   ```
+2. Install dependencies:
+   ```shell
+   pnpm install
+   ```
+3. Run the development server:
+   ```shell
+   pnpm dev
+   ```
+4. Build for production:
+   ```shell
+   pnpm build
+   ```
+
 ## Smart Contracts (Foundry)
 
 The smart contracts are built and tested using [Foundry](https://book.getfoundry.sh/). 
