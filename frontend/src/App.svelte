@@ -1,10 +1,29 @@
 <script lang="ts">
   import { ethers } from "ethers";
   import { getContract } from "$lib/services/contractService";
+  import { onMount } from "svelte";
 
   let amount = "0.01";
   let message = "";
   let status = "";
+  let funders: { donor: string }[] = [];
+
+  async function fetchDonors() {
+    if (!window.ethereum) return;
+    try {
+      const chainId = (
+        await window.ethereum.request({ method: "eth_chainId" })
+      ).toString();
+      const decimalChainId = parseInt(chainId, 16).toString();
+      const contract = await getContract(decimalChainId);
+      const data = await contract.getDonors();
+      funders = Array.from(data);
+    } catch (e) {
+      console.error("Error fetching donors:", e);
+    }
+  }
+
+  onMount(fetchDonors);
 
   async function handleFund() {
     if (!window.ethereum) {
@@ -17,7 +36,6 @@
         await window.ethereum.request({ method: "eth_chainId" })
       ).toString();
       const decimalChainId = parseInt(chainId, 16).toString();
-      console.log("Connecting to chain:", decimalChainId);
 
       const contract = await getContract(decimalChainId);
 
@@ -29,12 +47,6 @@
 
       const value = ethers.parseEther(amount.toString());
 
-      console.log("Transaction parameters:", {
-        message,
-        value: value.toString(),
-        amount,
-      });
-
       status = "Sending transaction...";
 
       // We add a manual gas limit to bypass MetaMask's estimation error
@@ -45,11 +57,11 @@
         gasLimit: 150000,
       });
 
-      console.log("Transaction sent:", tx.hash);
       await tx.wait();
 
       status = "Transaction successful!";
       message = "";
+      await fetchDonors();
     } catch (e: unknown) {
       console.error("Detailed error:", e);
       const error = e as { code?: string; reason?: string; message?: string };
@@ -69,21 +81,21 @@
 
   <label>
     Amount (ETH):
-    <input 
-      type="number" 
-      bind:value={amount} 
-      step="0.01" 
+    <input
+      type="number"
+      bind:value={amount}
+      step="0.01"
       min="0"
       on:keydown={(e: KeyboardEvent) => {
-        if (e.key === '-') {
+        if (e.key === "-") {
           e.preventDefault();
         }
       }}
       on:input={(e: Event) => {
         const target = e.target as HTMLInputElement;
         if (parseFloat(target.value) < 0) {
-          amount = '0';
-          target.value = '0';
+          amount = "0";
+          target.value = "0";
         }
       }}
     />
@@ -112,6 +124,17 @@
   {/if}
 </div>
 
+{#if funders.length > 0}
+  <div class="funders-list glass-card">
+    <h3>Recent Funders</h3>
+    <ul>
+      {#each [...funders].slice(-3).reverse() as funder}
+        <li>{funder.donor.slice(0, 6)}...{funder.donor.slice(-4)}</li>
+      {/each}
+    </ul>
+  </div>
+{/if}
+
 <style>
   :global(body) {
     background-color: #0f0f0f;
@@ -131,10 +154,17 @@
       Roboto,
       sans-serif;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
     box-sizing: border-box;
+    padding: 2rem;
+  }
+
+  :global(#app) {
+    min-width: 380px;
+    width: 100%;
+    max-width: 450px;
   }
 
   .glass-card {
@@ -154,10 +184,39 @@
     padding: 2rem;
     border-radius: 1.5rem;
     color: #fff;
-    width: 100%;
-    max-width: 420px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     animation: slideUp 0.5s ease-out;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .funders-list {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .funders-list h3 {
+    margin-top: 0;
+    color: #ff8c00;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .funders-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .funders-list li {
+    font-family: monospace;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
   }
 
   @keyframes slideUp {
