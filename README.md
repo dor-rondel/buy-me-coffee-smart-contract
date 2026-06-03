@@ -1,79 +1,18 @@
-# Buy Me a Coffee DApp
+# Buy Me A Coffee Smart Contract
 
-This repository contains the smart contracts for a basic "Buy me a coffee" / "Send me money" DApp, built specifically to be deployed on the **zkSync Mainnet Layer 2** to minimize transaction costs.
+This project contains a Solidity smart contract to receive donations (coffee) and a Svelte-based frontend to interact with the contract.
 
-## Features
-- **Minimum Contribution**: The contract enforces a minimum contribution amount of $3 USD.
-- **Chainlink Oracle Integration**: Uses Chainlink Data Feeds (Decentralized Oracle Networks) for real-time ETH/USD price conversion to validate the minimum spend.
-- **Donor Tracking**: Maintains a record of donors, including their address, a custom message (up to 200 characters), timestamp, and donation amount.
-- **Owner Withdrawal**: Secure mechanism for the contract owner to withdraw collected funds.
+## Frontend
+The frontend is a Svelte application located in the `frontend/` directory.
 
-## Design Decisions
-- **No Events/Mappings**: We have deliberately omitted Events and complex Mappings (e.g., address-to-donations) to keep the `fund` function as gas-efficient as possible. Given the expected low volume and lack of subscription features, the current array-based tracking is sufficient for frontend needs.
-- **Minimalist Storage**: Storing only essential donor data to minimize on-chain footprint.
-- **Immutability of Owner & Oracle**: Both the contract owner and the Chainlink Price Feed address are immutable once deployed. This eliminates "privileged access" risks but requires the owner to secure their private keys, as there is no recovery mechanism. We rely on Chainlink's proxy pattern for oracle longevity.
+### UI & Styling
+- **Theme**: Modern "glass-morphism" aesthetic with an Ubuntu-inspired orange gradient palette.
+- **Responsiveness**: Fully responsive design, centered horizontally and vertically on all screen sizes.
+- **User Experience**: Includes robust input sanitization to block negative numbers and non-numeric characters, along with improved error handling for transaction states.
 
-## Deployments
-- **Sepolia Testnet**: [0xfD6C8Ee5193B111aABc5a2D8925a45fF11eBc0f4](https://sepolia.etherscan.io/address/0xfd6c8ee5193b111aabc5a2d8925a45ff11ebc0f4)
+## CI/CD
+- **Smart Contracts**: CI runs automatically on changes to `contracts/`, `script/`, or `foundry.toml`.
+- **Frontend**: Separate CI pipeline for `frontend/` triggers on relevant changes, performing linting, type-checking, and building.
 
-## Frontend Development
-We are building a lightweight, visually rich DApp frontend using:
-...
-- **Automated Deployment**: GitHub Actions used to build and deploy to GitHub Pages.
-
-### Running the Frontend
-1. Navigate to the frontend directory:
-   ```shell
-   cd frontend
-   ```
-2. Install dependencies:
-   ```shell
-   pnpm install
-   ```
-3. Run the development server:
-   ```shell
-   pnpm dev
-   ```
-4. Build for production:
-   ```shell
-   pnpm build
-   ```
-
-## Smart Contracts (Foundry)
-
-The smart contracts are built and tested using [Foundry](https://book.getfoundry.sh/). 
-
-To work on the contracts, run commands from the project root directory.
-
-### Build
-
-```shell
-forge build
-```
-
-### Local Testing with Anvil
-
-To run a persistent local node and deploy to it using the configured mock contracts:
-
-1. Copy `.env.example` to `.env` and ensure your `PRIVATE_KEY` is set.
-
-2. Open a separate terminal and start Anvil with EIP-1559 base fee disabled to avoid gas price issues:
-   ```shell
-   anvil --no-base-fee
-   ```
-3. Load the environment variables and run the deployment script targeting the local network:
-   ```shell
-   source .env
-   forge script contracts/script/BuyMeACoffee.s.sol --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY --broadcast
-   ```
-### Test
-
-```shell
-forge test
-```
-
-### Future Requirements
-- **Environment Helper Functions:** As the project evolves, we will need helper functions to seamlessly switch between different networks, including `sepolia` mainnet, `zksync` sepolia, and `zksync` mainnet.
-
-## Project Guidelines
-Please refer to the `.gemini/GEMINI.md` for strict coding guidelines (style, optimization, and naming conventions) utilized by developers and Antigravity agents on this project.
+## Development
+- **Linting**: ESLint is configured for the frontend. Run `pnpm lint` in the `frontend/` directory.

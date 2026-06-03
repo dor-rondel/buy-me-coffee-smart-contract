@@ -40,10 +40,13 @@ You are acting as a **Principal Solidity Developer**.
 ## Frontend Development Principles
 
 - **Framework**: Use **Svelte** + **Vite** for a zero-runtime, high-performance experience.
-- **Styling**: Adhere to **Glassmorphism** aesthetics with an **Ubuntu/Brave** (Orange/Black/Dark Grey) color palette. Prefer Vanilla CSS with CSS Variables for theme management.
+- **Styling**: Adhere to **Glassmorphism** aesthetics with an **Ubuntu/Brave** (Orange/Black/Dark Grey) color palette. Use CSS variables and responsive design techniques.
+- **Input Handling**: Implement strict input sanitization and validation on the frontend to prevent invalid inputs (e.g., negative numbers).
 - **State Management**: Utilize Svelte Stores for global wallet and contract state.
-- **Blockchain Interaction**: Use `ethers.js` (v6) for all on-chain communication.
-- **Multi-Chain Resilience**: Implement a dynamic network lookup strategy via `networks.json`. The frontend must detect the active `chainId` and adjust contract addresses automatically.
+- **Blockchain Interaction**: Use `ethers.js` (v6). Implement manual gas limits as a fail-safe for estimation errors.
+- **Multi-Chain Resilience**: Implement a dynamic network lookup strategy via `networks.json`.
+- **CI/CD**: Separate CI pipeline for `frontend/` triggers on relevant changes, performing linting, type-checking, and building.
+- **Mandatory Validation**: Before completing any frontend task, you MUST run `pnpm lint` and `pnpm build` to ensure code quality and verify successful compilation.
 - **Dependency Management**: Strictly use **pnpm** for all package operations.
 
 ## Active Deployments
