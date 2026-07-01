@@ -31,14 +31,24 @@ Execute these verification checks in order. **Stop the workflow immediately if a
 Once the code passes all local Forge checks, review exactly what changes are being prepared for the commit.
 
 1. **Check Workspace Status:**
-   git status
+
+```bash
+git status
+```
 
 2. **Stage Changes:**
+
+```bash
    git add .
+```
 
 3. **Review Staged Changes:** Run the following command to review the precise lines added or modified in the contracts:
+
+```bash
    git diff --cached
-   - **Agent Instruction:** Carefully analyze the structural modifications to the smart contracts or test files in this diff to formulate a highly accurate, precise commit message.
+```
+
+- **Agent Instruction:** Carefully analyze the structural modifications to the smart contracts or test files in this diff to formulate a highly accurate, precise commit message.
 
 ---
 
@@ -49,7 +59,12 @@ Only proceed to this step after all pre-commit contract checks have passed and t
 1. **Commit with Context:**
    - Craft a concise, clear commit message using the imperative mood (e.g., `feat: add memo validation to buyMeCoffee function`).
    - Base the description directly on your findings from the `git diff --cached` output.
+     ```bash
      git commit -m "<descriptive-message-from-diff>"
+     ```
 
 2. **Push to Remote:**
+
+```bash
    git push origin HEAD
+```
