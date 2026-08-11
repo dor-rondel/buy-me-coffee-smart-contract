@@ -2,6 +2,7 @@
   import { ethers } from "ethers";
   import { getContract } from "$lib/services/contractService";
   import { onMount } from "svelte";
+  import WalletAlert from "./lib/components/WalletAlert.svelte";
 
   let amount = "0.01";
   let message = "";
@@ -90,6 +91,8 @@
     }
   }
 </script>
+
+<WalletAlert />
 
 <div class="glass-card">
   <h2>😇 Support Dor 😇</h2>
