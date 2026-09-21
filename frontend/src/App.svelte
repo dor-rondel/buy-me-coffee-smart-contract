@@ -153,6 +153,12 @@
   </div>
 {/if}
 
+<footer class="site-footer">
+  <p>
+    Check out <a href="https://www.portori.cc" target="_blank" rel="noopener noreferrer">PorTori</a> ✨
+  </p>
+</footer>
+
 <style>
   :global(body) {
     background-color: #0f0f0f;
@@ -176,7 +182,34 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    padding: 2rem;
+    padding: 2rem 2rem 3rem;
+  }
+
+  .site-footer {
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .site-footer p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #555;
+    letter-spacing: 0.01em;
+  }
+
+  .site-footer a {
+    background: linear-gradient(45deg, #ff8c00, #ff4500);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .site-footer a:hover {
+    opacity: 0.75;
   }
 
   :global(#app) {
